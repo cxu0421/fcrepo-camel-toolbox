@@ -309,16 +309,18 @@
       </dependency>
 
       <!-- logging -->
-      <dependency>
+    <!-- SLF4J API -->
+    <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
+        <version>1.7.36</version>
+    </dependency>
+    <!-- Logback Classic -->
+    <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>${logback.version}</version>
-      </dependency>
+        <version>1.2.11</version>
+    </dependency>
 
       <dependency>
         <groupId>commons-codec</groupId>
@@ -565,11 +567,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>com.mycila</groupId>
-        <artifactId>license-maven-plugin</artifactId>
       </plugin>
 
     </plugins>

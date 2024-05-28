@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration>
 <configuration>
+
+    <!-- Console Appender -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%p %d{HH:mm:ss.SSS} \(%c{0}\) %m%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-  <logger name="org.apache.camel" additivity="false" level="${fcrepo.log.camel:-WARN}">
-    <appender-ref ref="STDOUT"/>
-  </logger>
-  <root additivity="false" level="WARN">
-    <appender-ref ref="STDOUT"/>
-  </root>
+    <!-- Rolling File Appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/usr/nlm/dr/logs/camel-toolbox.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Daily rollover -->
+            <fileNamePattern>/usr/nlm/dr/logs/camel-toolbox-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- Keep 30 days worth of logs -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set the root level of logging to INFO and attach appenders -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- Example of setting a specific logger's level -->
+    <logger name="com.yourcompany" level="DEBUG"/>
 </configuration>
+
